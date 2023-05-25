@@ -6,38 +6,38 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Feather from "react-native-vector-icons/Feather";
 
-const DialerScreen = ({navigation}) => {
-  const [dialed, setDialed] = useState('');
+const DialerScreen = ({ navigation }) => {
+  
+  const [dialed, setDialed] = useState("");
+
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+    const unsubscribe = navigation.addListener("focus", () => {
       setDialed("");
       return unsubscribe;
-});  
-}, [navigation]);
+    });
+  }, [navigation]);
 
   const call = () => {
-    navigation.navigate('Call',{number:dialed});
-  }
- 
-  const CustomButton = ({ label, icon,del }) => {
+    navigation.navigate("Call", { number: dialed });
+  };
+
+  const CustomButton = ({ label, icon, del }) => {
     const [isPressed, setIsPressed] = useState(false);
 
     const handlePress = () => {
-      if(del){
-        if(dialed.length>0){
+      if (del) {
+        if (dialed.length > 0) {
           setDialed(dialed.slice(0, -1));
         }
-
-      }else{
-        if(dialed.length<=14){
-          setDialed(dialed+label);
-          }
+      } else {
+        if (dialed.length <= 14) {
+          setDialed(dialed + label);
+        }
       }
-      
     };
     const handlePressIn = () => {
       setIsPressed(true);
@@ -46,8 +46,6 @@ const DialerScreen = ({navigation}) => {
     const handlePressOut = () => {
       setIsPressed(false);
     };
-
-   
 
     const buttonStyle = isPressed ? [styles.key, styles.pressed] : styles.key;
 
@@ -141,12 +139,17 @@ const DialerScreen = ({navigation}) => {
             </View>
 
             <View>
-              <Pressable style={styles.call}
-              onPress={()=>call()}>
+              <Pressable style={styles.call} onPress={() => call()}>
                 <Ionicons name={"call-outline"} size={25} color={"#fff"} />
               </Pressable>
             </View>
-            <View style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <View
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <CustomButton icon={1} del={true}></CustomButton>
             </View>
           </View>
@@ -155,6 +158,7 @@ const DialerScreen = ({navigation}) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   main_container: {
     display: "flex",
@@ -167,16 +171,15 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     flex: 1,
-    // backgroundColor: "red",
   },
   auto_complete_conainer: {
-    display:'flex',
+    display: "flex",
     height: 200,
     backgroundColor: "white",
   },
   number_conainer: {
-    display:'flex',
-    padding:10,
+    display: "flex",
+    padding: 10,
     height: 80,
     backgroundColor: "#fff",
   },
@@ -195,7 +198,6 @@ const styles = StyleSheet.create({
     width: 100,
     justifyContent: "center",
     alignItems: "center",
-    // alignSelf:'stretch',
     backgroundColor: "00FFFFFF",
   },
   pressed: {
@@ -204,7 +206,6 @@ const styles = StyleSheet.create({
     width: 100,
     justifyContent: "center",
     alignItems: "center",
-    // alignSelf:'stretch',
     backgroundColor: "#dbdbd9",
   },
   text: {

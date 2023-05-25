@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Button,
-  TextInput,
-  ScrollView,
-  StyleSheet,
-} from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { collection, onSnapshot } from "firebase/firestore";
 import { ListItem, Avatar, Box } from "react-native-elements";
 import EmptyState from "../Empty-state/EmptyState";
 import db from "../database/firebase";
-import {avatarLetters} from '../functions/Functions'
+import { avatarLetters } from "../functions/Functions";
 
-
-const FavoritesScreen = ({navigation}) => {
+const FavoritesScreen = ({ navigation }) => {
   const [favorites, setContacts] = useState([]);
   useEffect(() => {
     const dbRef = collection(db, "favorites");
@@ -51,7 +43,7 @@ const FavoritesScreen = ({navigation}) => {
                 size="small"
                 rounded
                 title={avatarLetters(contact.name)}
-                titleStyle={{ color: "white",fontSize:15 }}
+                titleStyle={{ color: "white", fontSize: 15 }}
                 containerStyle={{ backgroundColor: "gray" }}
                 activeOpacity={0.7}
               />
@@ -72,7 +64,6 @@ const styles = StyleSheet.create({
   main_container: {
     display: "flex",
     flex: 1,
-    // justifyContent: "center",
   },
   empty_container: {
     display: "flex",
